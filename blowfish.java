@@ -1,0 +1,32 @@
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import java.util.Base64;
+
+class BlowfishDemo {
+    public static void main(String[] args) throws Exception {
+
+        // Generate Blowfish key
+        KeyGenerator kg = KeyGenerator.getInstance("Blowfish");
+        kg.init(128);   // Blowfish supports 32–448 bit keys
+        SecretKey key = kg.generateKey();
+
+        String text = "HELLO BLOWFISH";
+
+        // Encrypt
+        Cipher enc = Cipher.getInstance("Blowfish");
+        enc.init(Cipher.ENCRYPT_MODE, key);
+        byte[] encrypted = enc.doFinal(text.getBytes());
+        String encText = Base64.getEncoder().encodeToString(encrypted);
+
+        // Decrypt
+        Cipher dec = Cipher.getInstance("Blowfish");
+        dec.init(Cipher.DECRYPT_MODE, key);
+        String decText = new String(dec.doFinal(encrypted));
+
+        // Output
+        System.out.println("Original : " + text);
+        System.out.println("Encrypted: " + encText);
+        System.out.println("Decrypted: " + decText);
+    }
+}
