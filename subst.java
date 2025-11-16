@@ -1,6 +1,6 @@
 import java.util.*;
 
-class SubstitutionCipher {
+class subst{
     static String plain = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     static String cipher = "QWERTYUIOPASDFGHJKLZXCVBNM";
 
@@ -42,3 +42,4 @@ class SubstitutionCipher {
         return res.toString();
     }
 }
+
